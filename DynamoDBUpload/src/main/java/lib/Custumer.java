@@ -1,4 +1,4 @@
-package source;
+package lib;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
@@ -20,6 +20,8 @@ public class Custumer {
 	private int cost;
 	private int count;
 	private String birthday;
+	private int weight;
+	private int height;
 	
 	@DynamoDBHashKey(attributeName="id")
 	public int getId() {
@@ -59,6 +61,22 @@ public class Custumer {
 	}
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+	}	
+	
+	@DynamoDBAttribute(attributeName="weight")
+	public int getWeight() {
+		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
+	}
+	
+	@DynamoDBAttribute(attributeName="height")
+	public int getHeight() {
+		return height;
+	}
+	public void setHeight(int height) {
+		this.height = height;
 	}
 	
 	@Override
@@ -66,4 +84,5 @@ public class Custumer {
 		
 		return new Gson().toJson(this);
 	}
+
 }

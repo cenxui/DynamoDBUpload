@@ -4,6 +4,8 @@ import com.amazonaws.annotation.Immutable;
 import com.amazonaws.annotation.ThreadSafe;
 import com.amazonaws.services.dynamodbv2.document.Item;
 
+import lib.Custumer;
+
 /**
  * This class is used as a generator to produce 
  * a sample customer data. To work more efficiently 
@@ -27,12 +29,16 @@ public class CustomerGenerator {
 		generateCost();
 		generateCount();
 		generteBirthday();
+		generateHeight();
+		generateWeight();
 		
 		item.withPrimaryKey("id", custumer.getId());
 		item.withString("name", custumer.getName());
 		item.withInt("cost", custumer.getCost());
 		item.withInt("count", custumer.getCount());
 		item.withString("birthday", custumer.getBirthday());
+		item.withInt("height", custumer.getHeight());
+		item.withInt("weight", custumer.getWeight());
 	}
 	
 	private void generateName() {
@@ -55,6 +61,14 @@ public class CustomerGenerator {
 		int month = (int) (1 + (int)30*Math.random());
 		int day = (int) (1+ (int)30*Math.random());
 		custumer.setBirthday("" + year + "-" + month + "-" + day);
+	}
+	
+	private void generateWeight() {
+		custumer.setWeight(30 +(int)(80*Math.random()));
+	}
+	
+	private void generateHeight() {
+		custumer.setHeight(140 + (int)(50*Math.random()));
 	}
 	
 	@Override

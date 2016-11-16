@@ -2,9 +2,9 @@ package main;
 
 import com.amazonaws.services.dynamodbv2.document.Table;
 
-import data.CustomTable;
+import lib.CustomTable;
+import lib.Custumer;
 import source.CustomerGenerator;
-import source.Custumer;
 
 /**
  * 2016/11/16 
