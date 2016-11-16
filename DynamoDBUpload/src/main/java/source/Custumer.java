@@ -1,62 +1,69 @@
 package source;
 
-import com.amazonaws.annotation.Immutable;
-import com.amazonaws.services.dynamodbv2.document.Item;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
+import com.google.gson.Gson;
 
 /**
  * This class is used to generate item in
  * clear way With this class we can generate 
  * the customer data in desirable state.
- * 
- * This class is immutable which make it unchangable
- * and thread safe.
  * @author cenxui
  * 2016/11/16
  */
 
-@Immutable
+@DynamoDBTable(tableName="customer")
 public class Custumer {
-	private final Item item;
+	private int id;
+	private String name;
+	private int cost;
+	private int count;
+	private String birthday;
 	
-	public Custumer(int i) {
-		item = new Item();
-		item.withPrimaryKey("id", i);
-		generateName();
-		generateCost();
-		generateCount();
-		generteBirthday();
+	@DynamoDBHashKey(attributeName="id")
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 	
-	private void generateName() {
-		char v1 = (char)(65 + 26*Math.random());
-		char v2 = (char)(97 + 26*Math.random());
-		char v3 = (char)(97 + 26*Math.random());
-		item.withString("name", "" +v1+v2+v3);
+	@DynamoDBAttribute(attributeName="name")
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	
-	private  void generateCost() {
-		item.withInt("cost", (int) (Math.random()*100000));
+	@DynamoDBAttribute(attributeName="cost")
+	public int getCost() {
+		return cost;
+	}
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 	
-	private void generateCount() {
-		item.withInt("count", (int) (Math.random()*1000));
+	@DynamoDBAttribute(attributeName="count")
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}
 	
-	private void generteBirthday() {
-		int year = (int) (1910 + (int)100*Math.random());
-		int month = (int) (1 + (int)30*Math.random());
-		int day = (int) (1+ (int)30*Math.random());
-		item.withString("birthday","" + year + "-" + month + "-" + day );
+	@DynamoDBAttribute(attributeName="birthday")
+	public String getBirthday() {
+		return birthday;
 	}
-	
-	public Item toItem() {
-		return item;
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
 	}
 	
 	@Override
 	public String toString() {
 		
-		return item.toString();
+		return new Gson().toJson(this);
 	}
-
 }
