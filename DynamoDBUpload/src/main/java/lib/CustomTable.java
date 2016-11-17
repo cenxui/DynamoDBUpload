@@ -23,7 +23,11 @@ public class CustomTable {
 		
 	}
 	
-	static class Resource {
+	private CustomTable() {
+		
+	}
+	
+	private static class Resource {
 		private static Table table = 
 				CkmatesDynamoDB.getDynamoDB().getTable(tableName); 
 		

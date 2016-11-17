@@ -15,7 +15,15 @@ public class TestQuery {
 	public static void main(String[] args) {
 		
 		Table table = CustomTable.getCustomTable();
-		for (int i= 1; i<=200; i++) {
+//		table.deleteItem("id", 1);
+		
+		System.out.println(table.delete());
+
+//		queryAll(table);
+	}
+
+	private static void queryAll(Table table) {
+		for (int i= 1; i <= 200; i++) {
 			
 			QuerySpec querySpec = new QuerySpec()
 					.withKeyConditionExpression("id = :v_id")
@@ -24,7 +32,6 @@ public class TestQuery {
 			ItemCollection<QueryOutcome> collection =  table.query(querySpec);
 			collection.forEach(System.out::println);
 		}
-		
 	}
 
 	private static void queryPrimaryKey(Table table, int primaryKey) {

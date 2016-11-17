@@ -3,7 +3,6 @@ package main;
 import com.amazonaws.services.dynamodbv2.document.Table;
 
 import lib.CustomTable;
-import lib.Custumer;
 import source.CustomerGenerator;
 
 /**

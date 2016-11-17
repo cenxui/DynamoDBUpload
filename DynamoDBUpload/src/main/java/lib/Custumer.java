@@ -81,7 +81,6 @@ public class Custumer {
 	
 	@Override
 	public String toString() {
-		
 		return new Gson().toJson(this);
 	}
 
