@@ -1,8 +1,14 @@
 package main;
 
+import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
+import com.amazonaws.services.dynamodbv2.document.DynamoDB;
 import com.amazonaws.services.dynamodbv2.document.Table;
 
-import lib.CustomTable;
+import lib.CkmatesDynamoDB;
+import lib.CkmatesDynamoDBClient;
+import lib.Customer;
+import lib.CustomerTable;
 import source.CustomerGenerator;
 
 /**
@@ -19,12 +25,18 @@ import source.CustomerGenerator;
 public class Main {
 
 	public static void main(String[] args) {
-		Table table = CustomTable.getCustomTable();
-		for (int i = 1; i<= 200; i++) {
-			table.putItem(new CustomerGenerator(i).toItem());
-		}
+		DynamoDBMapper mapper = new DynamoDBMapper(CkmatesDynamoDBClient.getDynamoDBClient());
+		
+		System.out.println(mapper.load(Customer.class, 1));
 		
 		System.out.println("sucess");
+	}
+
+	private static void generate() {
+		CustomerTable table = CustomerTable.getCustomerTable();
+		for (int i = 1; i<= 200; i++) {
+			table.putItem(new CustomerGenerator(i).getCustomer());
+		}
 	}
 
 }

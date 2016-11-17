@@ -6,20 +6,14 @@ import com.amazonaws.services.dynamodbv2.document.Table;
 import com.amazonaws.services.dynamodbv2.document.spec.QuerySpec;
 import com.amazonaws.services.dynamodbv2.document.utils.ValueMap;
 
-import lib.CustomTable;
+import lib.CustomerTable;
 
 
 
 public class TestQuery {
 
 	public static void main(String[] args) {
-		
-		Table table = CustomTable.getCustomTable();
-//		table.deleteItem("id", 1);
-		
-		System.out.println(table.delete());
 
-//		queryAll(table);
 	}
 
 	private static void queryAll(Table table) {

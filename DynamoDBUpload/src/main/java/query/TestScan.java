@@ -7,12 +7,12 @@ import com.amazonaws.services.dynamodbv2.document.ItemCollection;
 import com.amazonaws.services.dynamodbv2.document.ScanOutcome;
 import com.amazonaws.services.dynamodbv2.document.Table;
 
-import lib.CustomTable;
+import lib.CkmatesDynamoDB;
 
 public class TestScan {
 
 	public static void main(String[] args) {
-		Table table = CustomTable.getCustomTable();
+		Table table = CkmatesDynamoDB.getDynamoDB().getTable("customer");
 		 Map<String, Object> expressionAttributeValues = new HashMap<String, Object>();
 	        expressionAttributeValues.put(":wei", 70);
 	        
